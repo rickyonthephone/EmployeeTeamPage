@@ -3,6 +3,7 @@
 const inquirer = require('inquirer')
 const fs = require('fs')
 const path = require('path')
+const generateHTML = require('./generateHTML.js')
 
 //Intro question to select employee type; the selection from this list will determine what 
 //questions the user answers
@@ -127,7 +128,14 @@ const initialize = () => {
             .then (answers => {
             if (answers.finished === 'no') {
                 introPrompt();
-            } else {console.log(employeeArr)}
+            } else {
+                const stringHTML = generateHTML (employeeArr)
+                fs.writeFile ('index.html', stringHTML, (err) => {
+                    if (err) {
+                        console.error(err);
+                    } else {console.log ("File Created!")}
+                });
+            }
             })
         })
     }

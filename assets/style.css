@@ -1,0 +1,11 @@
+.employee-header {
+    display: flex;
+}
+.card-header {
+    background-color:blue;
+    color:white;
+}
+.card-container {
+    display:flex;
+    flex-wrap: wrap;
+}
