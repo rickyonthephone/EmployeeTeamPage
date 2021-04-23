@@ -6,6 +6,7 @@ const path = require('path')
 
 //Intro question to select employee type; the selection from this list will determine what 
 //questions the user answers
+
 const introQuestion = [
     { 
         type: 'list',
@@ -17,6 +18,7 @@ const introQuestion = [
 ];
 
 //Questions if the interoQuestion answer is 'Intern'
+
 const internQuestions = [
     {
         type: 'input',
@@ -36,6 +38,7 @@ const internQuestions = [
 ]
 
 //Questions if introQuestion answer is 'manager'
+
 const managerQuestions = [
     {
         type: 'input',
@@ -55,6 +58,7 @@ const managerQuestions = [
 ]
 
 //Questions if introQuestion is 'engineer'
+
 const engineerQuestions = [
     {
         type: 'input',
@@ -73,11 +77,15 @@ const engineerQuestions = [
     }  
 ];
 
+//creating an empty array to push employees to that are entered via inquirer
+
 const initialize = () => {
     let employeeArr = [];
     
    
 
+//Prompt that will initiate the intro question and then determine what set of questions
+//the user will complete. 
 
     const introPrompt = () => {
         let employee = {};
@@ -94,6 +102,10 @@ const initialize = () => {
             }
         })
     }
+
+//Manager prompt questions and are then mergered with the answer to the introQuestion; information is 
+// then pushed to the array. Additional logic to determine whether or not the user is finished entering 
+//information or not. If no, introPrompt starts again; if yes, then questions finish. 
 
     const managerPrompt = (employeeObj) => {
         inquirer.prompt (managerQuestions)
@@ -120,6 +132,10 @@ const initialize = () => {
         })
     }
 
+//Engineer prompt questions and are then mergered with the answer to the introQuestion; information is 
+// then pushed to the array. Additional logic to determine whether or not the user is finished entering 
+//information or not. If no, introPrompt starts again; if yes, then questions finish.
+
     const engineerPrompt = (employeeObj) => {
         inquirer.prompt (engineerQuestions)
         .then((answers) => {
@@ -143,6 +159,10 @@ const initialize = () => {
             })
         })
     }
+
+//Intern prompt questions and are then mergered with the answer to the introQuestion; information is 
+// then pushed to the array. Additional logic to determine whether or not the user is finished entering 
+//information or not. If no, introPrompt starts again; if yes, then questions finish.    
 
     const internPrompt = (employeeObj) => {
         inquirer.prompt (internQuestions)
@@ -168,7 +188,11 @@ const initialize = () => {
         })
     }
 
+//Call introPrompt function
+
     introPrompt();
 }
+
+//Call initialize function
 
 initialize();
