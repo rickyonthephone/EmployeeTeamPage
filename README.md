@@ -4,13 +4,15 @@
 
 Build a Node.js command-line application that takes in information about employees on a software engineering team, then generates an HTML webpage that displays summaries for each person. Testing is key to making code maintainable, so you’ll also write a unit test for every part of your code and ensure that it passes each test.
 
-Because this application won’t be deployed, you’ll need to provide a link to a walkthrough video that demonstrates its functionality and all of the tests passing. You’ll need to submit a link to the video AND add it to the readme of your project.
+Create a walkthrough video that demonstrates the app's functionality and all of the tests passing.
 
-video can be found here: 
 
-code repo is here:
+video can be found here: https://youtu.be/ntakOAP-XeI
 
-screenshot of site: ![screenshot]()
+code repo is here: https://github.com/rickyonthephone/EmployeeTeamPage
+
+screenshot of site: ![screenshot](https://github.com/rickyonthephone/EmployeeTeamPage/blob/master/assets/Screen%20Shot%202021-04-26%20at%2012.30.34%20PM.png)
+
 
 
 ## User Story
