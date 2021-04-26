@@ -1,6 +1,7 @@
 //<i class="fas fa-mug-hot"></i>
 //<i class="fas fa-graduation-cap"></i>
 
+// Function that will create employee cards with the proper information for each type of employee
 function generateEmployeeCards (data) {
     let employeeCards = '';
     for (let i = 0; i < data.length; i++) {
@@ -41,6 +42,8 @@ function generateEmployeeCards (data) {
     return employeeCards
 }
 
+
+// function that will generate HTML page when done
 const generateHTML = (data) => {
        return `<!DOCTYPE html>
 
