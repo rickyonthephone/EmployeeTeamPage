@@ -13,7 +13,7 @@ const introQuestion = [
         type: 'list',
         message: 'What type of employee are you adding?',
         name:'employeeType',
-        choices: ['Manager', 'Engineer', 'Intern']
+        choices: ['Manager', 'Engineer', 'Intern', 'Employee']
 
     }
 ];
@@ -78,6 +78,26 @@ const engineerQuestions = [
     }  
 ];
 
+//Questions if the interoQuestion answer is 'Employee'
+
+const employeeQuestions = [
+    {
+        type: 'input',
+        message: "What is the employee's name?",
+        name:'employeeName'
+    },
+    {
+        type: 'input',
+        message: "What is the employee's email?",
+        name:'employeeEmail',
+    },
+    {
+        type: 'input',
+        message: "What is the employee's cubicle number?",
+        name:'employeeCube',
+    }  
+];
+
 //creating an empty array to push employees to that are entered via inquirer
 
 const initialize = () => {
@@ -98,11 +118,13 @@ const initialize = () => {
                 managerPrompt(employee);
             } else if(answers.employeeType === 'Engineer') {
                 engineerPrompt(employee);    
+            } else if (answers.employeeType === 'Employee') {
+                employeePrompt(employee);
             } else {
                 internPrompt(employee);
             }
         })
-    }
+    };
 
 //Manager prompt questions and are then mergered with the answer to the introQuestion; information is 
 // then pushed to the array. Additional logic to determine whether or not the user is finished entering 
@@ -133,7 +155,7 @@ const initialize = () => {
                 fs.writeFile ('index.html', stringHTML, (err) => {
                     if (err) {
                         console.error(err);
-                    } else {console.log ("File Created!")}
+                    } else {console.log ("File Created")}
                 });
             }
             })
@@ -147,6 +169,7 @@ const initialize = () => {
     const engineerPrompt = (employeeObj) => {
         inquirer.prompt (engineerQuestions)
         .then((answers) => {
+            // console.log(answers);
             let updatedEmployee = {
                 ...employeeObj,
                 ...answers
@@ -163,7 +186,14 @@ const initialize = () => {
             .then (answers => {
             if (answers.finished === 'no') {
                 introPrompt();
-            } else {console.log(employeeArr)}
+            } else {
+                const stringHTML = generateHTML (employeeArr)
+                fs.writeFile ('index.html', stringHTML, (err) => {
+                    if (err) {
+                        console.error(err);
+                    } else {console.log ("File Created")}
+                });
+            }
             })
         })
     }
@@ -175,6 +205,7 @@ const initialize = () => {
     const internPrompt = (employeeObj) => {
         inquirer.prompt (internQuestions)
         .then((answers) => {
+            // console.log(answers);
             let updatedEmployee = {
                 ...employeeObj,
                 ...answers
@@ -191,7 +222,46 @@ const initialize = () => {
             .then (answers => {
             if (answers.finished === 'no') {
                 introPrompt();
-            } else {console.log(employeeArr)}
+            } else {
+                const stringHTML = generateHTML (employeeArr)
+                fs.writeFile ('index.html', stringHTML, (err) => {
+                    if (err) {
+                        console.error(err);
+                    } else {console.log ("File Created")}
+                });
+            }
+            })
+        })
+    }
+
+    const employeePrompt = (employeeObj) => {
+        inquirer.prompt (employeeQuestions)
+        .then((answers) => {
+            // console.log(answers);
+            let updatedEmployee = {
+                ...employeeObj,
+                ...answers
+            }
+            employeeArr.push(updatedEmployee);
+        })
+        .then (() => {
+            inquirer.prompt([{
+                type:'list',
+                message:'Are you finished adding employees?',
+                name: 'finished',
+                choices:['yes', 'no']
+            }])
+            .then (answers => {
+            if (answers.finished === 'no') {
+                introPrompt();
+            } else {
+                const stringHTML = generateHTML (employeeArr)
+                fs.writeFile ('index.html', stringHTML, (err) => {
+                    if (err) {
+                        console.error(err);
+                    } else {console.log ("File Created")}
+                });
+            }
             })
         })
     }

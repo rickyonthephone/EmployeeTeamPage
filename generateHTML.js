@@ -1,5 +1,6 @@
 //<i class="fas fa-mug-hot"></i>
 //<i class="fas fa-graduation-cap"></i>
+//<i class="fas fa-male"></i>
 
 // Function that will create employee cards with the proper information for each type of employee
 function generateEmployeeCards (data) {
@@ -12,6 +13,8 @@ function generateEmployeeCards (data) {
             icon = `<i class="fas fa-mug-hot"></i>`
         } else if (currentEmployee.employeeType === 'Intern') {
             icon = `<i class="fas fa-graduation-cap"></i>`
+        } else if (currentEmployee.employeeType === 'Employee') { 
+            icon = `<i class="fas fa-male"></i>`
         } else {
             icon = `<i class="fas fa-glasses"></i>`
         }
@@ -19,6 +22,8 @@ function generateEmployeeCards (data) {
             thirdAttribute = `Office Number: ${currentEmployee.employeeOffice}`
         } else if (currentEmployee.employeeType === 'Intern') {
             thirdAttribute = `School: ${currentEmployee.employeeSchool}`
+        } else if (currentEmployee.employeeType === 'Employee') {
+            thirdAttribute = `Cubicle Number: ${currentEmployee.employeeCube}`
         } else {
             thirdAttribute = `GitHub: ${currentEmployee.employeeGithub}`
         }
@@ -54,9 +59,9 @@ const generateHTML = (data) => {
             <title></title>
             <meta name="description" content="">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link rel="stylesheet" href="./assets/style.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-v4-rtl/4.6.0-2/css/bootstrap.min.css" integrity="sha512-hugT+JEQi0vXZbvspjv4x2M7ONBvsLR9IFTEQAYoUsmk7s1rRc2u7I6b4xa14af/wZ+Nw7Aspf3CtAfUOGyflA==" crossorigin="anonymous" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+            <link rel="stylesheet" href="/assets/style.css">
         </head>
         <body>
             <h1>Employee Directory</h1>
